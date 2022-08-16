@@ -1,5 +1,21 @@
 {% extends 'base.html' %}
-{% block title %}{% endblock%}
+{% block title %}Pets{% endblock%}
 {% block content %}
 
+<h1>Pets for Adoption
+</h1>
+<div class="row">
+{% for pet in pets%}
+<div class="col-3">
+<img src="{{pet.photo_url}}" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-3"></img>
+<a href="/add/{{pet.id}}/edit">{{pet.name}}</a>
+{%if pet.available%} <b>is avalible!</b>{%endif%}
+</div>
+{% else %}
+<div> <b>Not available</b> %</div>
+{%endfor%}
+</div>
+<form>
+<button formaction="/add" class="btn btn-lg btn-outline-info">Add a Pet</button>
+</form>
 {% endblock %}
